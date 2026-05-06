@@ -34,7 +34,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) {
 
-        stage.setTitle("CPU Scheduling Simulator - Round Robin vs Preemptive Priority");
+        stage.setTitle("CPU Scheduling Simulator - Round Robin vs Priority Scheduling");
 
         GridPane inputGrid = new GridPane();
         inputGrid.setPadding(new Insets(20));
@@ -68,7 +68,8 @@ public class MainApp extends Application {
         priorityRule.setStyle("-fx-text-fill: #555555; -fx-font-size: 12px;");
 
         Label tieBreakerRule = new Label(
-                "Tie-Breaking Rule: Equal-priority processes are served in arrival order (earliest first)."
+                "Tie-Breaking Rule: If two processes have different arrival times, the earlier arrival runs first. \n" +
+                "If they share both the same priority and the same arrival time, they are served in Round Robin order using the time quantum."
         );
         tieBreakerRule.setStyle("-fx-text-fill: #555555; -fx-font-size: 12px;");
 
@@ -163,13 +164,12 @@ public class MainApp extends Application {
         List<Process> prioList = cloneList(processList);
 
         var rrTimeline = RoundRobinScheduler.simulate(rrList, quantum);
-        var prioTimeline = PriorityScheduler.simulate(prioList);
-
+        var prioTimeline = PriorityScheduler.simulate(prioList, quantum);
         resultsArea.getChildren().clear();
 
         resultsArea.getChildren().addAll(
                 createResultSection("Round Robin", rrList, rrTimeline),
-                createResultSection("Preemptive Priority", prioList, prioTimeline),
+                createResultSection("Priority Scheduling", prioList, prioTimeline),
                 createComparisonSection(rrList, prioList)
         );
     }
@@ -431,6 +431,15 @@ public class MainApp extends Application {
 
             pane.getChildren().addAll(rect, name, border, time);
         }
+
+        if (!timeline.isEmpty()) {
+            model.TimeSlot last = timeline.get(timeline.size() - 1);
+            Label endTime = new Label(String.valueOf(last.endTime));
+            endTime.setLayoutX(leftMargin + last.endTime * unit - 5);
+            endTime.setLayoutY(top + height + 5);
+            pane.getChildren().add(endTime);
+        }
+
 
         pane.setPrefWidth(1200);
         pane.setPrefHeight(120);
