@@ -120,3 +120,4 @@ Five different workload scenarios are included in the test-cases/ folder:
 - Round Robin improves fairness and response time.
 - Priority Scheduling favors urgent processes.
 - Starvation risk exists in Priority Scheduling.
+
