@@ -1,0 +1,13 @@
+Scenario C: Fairness Case
+
+Processes:
+P1 0 10 3
+P2 0 9 1
+P3 0 7 1
+
+Quantum: 2
+
+Purpose of using this case :
+- All arrive at same time
+- RR shares CPU equally
+- Priority favors lower number

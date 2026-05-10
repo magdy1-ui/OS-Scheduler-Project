@@ -1,0 +1,16 @@
+Scenario E: Validation Case
+
+Invalid Inputs:
+
+P1 -1 5 2
+P1 0 0 3
+P1 0 5 -1
+Quantum: 0
+
+Purpose of using this case:
+- Verify validation handling
+- Negative arrival
+- Zero burst
+- Negative priority
+- Invalid quantum
+- Duplicate IDs

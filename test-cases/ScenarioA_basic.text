@@ -1,0 +1,13 @@
+Scenario A: Basic Mixed Workload
+
+Processes:
+P1 0 4 2
+P2 1 4 1
+P3 2 4 3
+
+Quantum: 2
+Purpose of using this case :
+- Normal workload
+- Different arrival times
+- Different priorities
+- Observe general behavior

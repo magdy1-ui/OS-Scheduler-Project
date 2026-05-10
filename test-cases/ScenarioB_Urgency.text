@@ -1,0 +1,13 @@
+Scenario B: Urgency Case
+
+Processes:
+P1 0 10 1
+P2 1 2 2
+P3 2 2 2
+
+Quantum: 2
+
+Purpose of using this case :
+- P1 has highest priority but long burst
+- Priority scheduling favors P1
+- RR distributes CPU more evenly
